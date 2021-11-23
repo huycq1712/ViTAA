@@ -13,7 +13,7 @@ class DatasetCatalog(object):
         },
         "cuhkpedes_val": {
             "img_dir": "cuhkpedes",
-            "ann_file": "cuhkpedes/annotations/val.json"
+            "ann_file": "uhkpedes/annotations/val.json"
         },
         "cuhkpedes_test": {
             "img_dir": "cuhkpedes",
