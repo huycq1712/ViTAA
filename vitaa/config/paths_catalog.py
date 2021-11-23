@@ -7,17 +7,17 @@ import os
 class DatasetCatalog(object):
     DATA_DIR = "datasets"
     DATASETS = {
-        "cuhkpedes_train": {
-            "img_dir": "cuhkpedes",
-            "ann_file": "cuhkpedes/annotations/train.json"
+        "vnpersonsearch3k_train": {
+            "img_dir": "vn_person_search_3k",
+            "ann_file": "vn_person_search_3k/annotations/train.json"
         },
-        "cuhkpedes_val": {
-            "img_dir": "cuhkpedes",
-            "ann_file": "uhkpedes/annotations/val.json"
+        "vnpersonsearch3k_valid": {
+            "img_dir": "vn_person_search_3k",
+            "ann_file": "vn_person_search_3k/annotations/val.json"
         },
-        "cuhkpedes_test": {
-            "img_dir": "cuhkpedes",
-            "ann_file": "cuhkpedes/annotations/test.json"
+        "vnpersonsearch3k_test": {
+            "img_dir": "vn_person_search_3k",
+            "ann_file": "vn_person_search_3k/annotations/test.json"
         },
         # "market1501_train": {
         #     "img_dir": "market1501",
@@ -39,7 +39,7 @@ class DatasetCatalog(object):
 
     @staticmethod
     def get(name):
-        if "cuhkpedes" in name:
+        if "vnpersonsearch3k" in name:
             data_dir = DatasetCatalog.DATA_DIR
             attrs = DatasetCatalog.DATASETS[name]
             args = dict(
@@ -47,7 +47,7 @@ class DatasetCatalog(object):
                 ann_file=os.path.join(data_dir, attrs["ann_file"]),
             )
             return dict(
-                factory="CUHKPEDESDataset",
+                factory="VNpersonsearch3k",
                 args=args,
             )
         # elif "market1501" in name:
