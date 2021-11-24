@@ -1,10 +1,9 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
 from .concat_dataset import ConcatDataset
-from .cuhkpedes import CUHKPEDESDataset
-from .market1501 import Market1501Dataset
-from .dukemtmc import DukeMTMCDataset
+from .vnpersonsearch3k import VNpersonsearch3k
+#from .market1501 import Market1501Dataset
+#from .dukemtmc import DukeMTMCDataset
 
 __all__ = ["ConcatDataset",
-           "CUHKPEDESDataset",
-           "Market1501Dataset",
-           "DukeMTMCDataset"]
+           "VNpersonsearch3k",
+           ]
