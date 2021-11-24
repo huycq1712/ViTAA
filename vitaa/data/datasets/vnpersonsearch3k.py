@@ -8,7 +8,7 @@ from PIL import Image
 from vitaa.utils.caption import Caption
 
 
-class CUHKPEDESDataset(data.Dataset):
+class VNpersonsearch3k(data.Dataset):
     def __init__(self,
                  root,
                  ann_file,
@@ -28,7 +28,7 @@ class CUHKPEDESDataset(data.Dataset):
         self.seg_dir = os.path.join(self.root, 'segs')
 
         print('loading annotations into memory...')
-        self.dataset = json.load(open(ann_file, 'r'))
+        self.dataset = json.load(open(ann_file, 'r', encoding="utf-8"))
 
     def __getitem__(self, index):
         """
@@ -41,7 +41,7 @@ class CUHKPEDESDataset(data.Dataset):
 
         img_path = data['file_path']
         img = Image.open(os.path.join(self.img_dir, img_path)).convert('RGB')
-        seg = Image.open(os.path.join(self.seg_dir, img_path.split('.')[0]+'.png'))
+        seg = Image.open(os.path.join(self.seg_dir, img_path.split('.jpg')[0]+'.png'))
 
         caption = data['onehot']
         caption = torch.tensor(caption)

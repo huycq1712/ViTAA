@@ -112,7 +112,7 @@ def evaluation(
     )
 
 
-def cuhkpedes_evaluation(
+def vnpersonsearch3k_evaluation(
     dataset,
     predictions,
     output_folder
