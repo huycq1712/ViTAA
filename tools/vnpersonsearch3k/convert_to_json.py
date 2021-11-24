@@ -112,9 +112,9 @@ def parse_att_json(att_list, dictionary):
 def main(args):
     splits = ['train', 'val', 'test']
     json_name = '%s.json'
-    anno_file = 'annotations/reid_raw.json'
+    anno_file = 'annotations/vn3k.json'
     att_dir = os.path.join(args.datadir, 'text_attribute_graph')
-    json_ann = json.load(open(os.path.join(args.datadir, anno_file)))
+    json_ann = json.load(open(os.path.join(args.datadir, anno_file), encoding="utf-8"))
 
     # tokenization and preprocessing
     prepro_captions(json_ann)
@@ -152,7 +152,7 @@ def main(args):
 
                 # Load the parsed attribute and write to the processed files - Jacob
                 att_json_file = anno['file_path'].replace('/', '-')
-                with open(os.path.join(att_dir, att_json_file + '-' + str(cap_idx) + '.json'), 'r') as f:
+                with open(os.path.join(att_dir, att_json_file + '-' + str(cap_idx) + '.json'), 'r', encoding="utf-8") as f:
                     att_dict = parse_att_json(ast.literal_eval(f.read()), wtoi)
                 ann['att_onehot'] = att_dict
                 annotations.append(ann)
@@ -163,7 +163,7 @@ def main(args):
         print("Num id-persons: %s" % len(id_collect))
         print("Num images: %s" % len(img_collect))
         print("Num annotations: %s" % len(annotations))
-        with open(os.path.join(args.outdir, json_name % split), 'w') as outfile:
+        with open(os.path.join(args.outdir, json_name % split), 'w', encoding="utf-8") as outfile:
             outfile.write(json.dumps(ann_dict))
     return wtoi
 
@@ -171,7 +171,7 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--datadir', default='', type=str,
-                        help='CUHK-PEDES dataset root directory')
+                        help='VN personsearch 3k dataset root directory')
     parser.add_argument('--outdir', default='', type=str,
                         help='Root saving path for annotation files')
     # options
