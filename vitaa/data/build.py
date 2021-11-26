@@ -25,7 +25,7 @@ def build_dataset(dataset_list,
         data = dataset_catalog.get(dataset_name)
         factory = getattr(D, data["factory"])
         args = data["args"]
-        if data["factory"] == "CUHKPEDESDataset":
+        if data["factory"] == "VNpersonsearch3k":
             args["max_length"] = 100
             args["max_attribute_length"] = 25
             args["crop_transforms"] = crop_transforms
