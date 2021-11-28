@@ -24,7 +24,7 @@ class Caption(object):
             text = self.pad(text, max_length, device)
 
         self.text = text
-        self.length = length
+        self.length = length if length < max_length else max_length
         self.max_length = max_length
         self.padded = True
         self.dtype = dtype
