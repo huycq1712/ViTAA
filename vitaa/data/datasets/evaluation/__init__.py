@@ -19,7 +19,7 @@ def evaluate(dataset, predictions, output_folder):
     args = dict(
         dataset=dataset, predictions=predictions, output_folder=output_folder
     )
-    if isinstance(dataset, datasets.CUHKPEDESDataset):
+    if isinstance(dataset, datasets.VNpersonsearch3k):
         return vnpersonsearch3k_evaluation(**args)
     elif isinstance(dataset, datasets.Market1501Dataset):
         return vnpersonsearch3k_evaluation(**args)
