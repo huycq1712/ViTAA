@@ -75,7 +75,7 @@ class LSTM(nn.Module):
 
         embed_sort = embed.index_select(0, idx_sort)
         length_list = text_length[idx_sort]
-        pack = nn.utils.rnn.pack_padded_sequence(embed_sort, length_list, batch_first=True)
+        pack = nn.utils.rnn.pack_padded_sequence(embed_sort, length_list.cpu(), batch_first=True)
 
         lstm_sort_out, _ = self.lstm[index](pack)
         lstm_sort_out = nn.utils.rnn.pad_packed_sequence(lstm_sort_out, batch_first=True)
