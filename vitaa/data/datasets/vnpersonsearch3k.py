@@ -13,7 +13,7 @@ class VNpersonsearch3k(data.Dataset):
                  root,
                  ann_file,
                  max_length=100,
-                 max_attribute_length=40,
+                 max_attribute_length=25,
                  transforms=None,
                  crop_transforms=None,
                  cap_transforms=None):
