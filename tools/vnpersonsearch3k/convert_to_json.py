@@ -3,6 +3,7 @@ import ast
 import json
 import argparse
 import string
+import codecs
 
 
 def add_start_end(tokens, start_word='<START>', end_word='<END>'):
@@ -19,10 +20,13 @@ def add_start_end(tokens, start_word='<START>', end_word='<END>'):
 def prepro_captions(json_ann):
     print('example processed tokens:')
     for i, anno in enumerate(json_ann):
-        anno['processed_tokens'] = []
-        for j, s in enumerate(anno['captions']):
-            txt = str(s).lower().translate(str.maketrans('', '', string.punctuation)).strip().split()
-            anno['processed_tokens'].append(txt)
+        #anno['processed_tokens'] = []
+        for j, s in enumerate(anno['processed_tokens']):
+            temp = []
+            for item in s:
+                if item not in ['.', ',', '!', '?', '/']:
+                    temp.append(item.lower())
+            anno['processed_tokens'][j] = temp
 
 
 def build_vocab(args, json_ann):
@@ -101,7 +105,7 @@ def parse_att_json(att_list, dictionary):
             word = word.lower().translate(str.maketrans('', '', string.punctuation))
             if word in dictionary.keys(): phrase.append(dictionary[word])
 
-        if key == 'hair' or key == 'hat' or key == 'person':
+        if key == 'hair' or key == 'hat' or key == 'person' or key == 'face' or 'glasses':
             key = 'head'
         if key == 'other':
             key = 'upperbody'
@@ -163,8 +167,8 @@ def main(args):
         print("Num id-persons: %s" % len(id_collect))
         print("Num images: %s" % len(img_collect))
         print("Num annotations: %s" % len(annotations))
-        with open(os.path.join(args.outdir, json_name % split), 'w', encoding="utf-8") as outfile:
-            outfile.write(json.dumps(ann_dict))
+        with codecs.open(os.path.join(args.outdir, json_name % split), 'w', "utf-8") as outfile:
+            outfile.write(json.dumps(ann_dict, ensure_ascii=False))
     return wtoi
 
 
