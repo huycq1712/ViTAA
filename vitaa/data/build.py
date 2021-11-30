@@ -27,7 +27,7 @@ def build_dataset(dataset_list,
         args = data["args"]
         if data["factory"] == "VNpersonsearch3k":
             args["max_length"] = 100
-            args["max_attribute_length"] = 25
+            args["max_attribute_length"] = 40
             args["crop_transforms"] = crop_transforms
         # elif data["factory"] == "Market1501Dataset":
         #     args["is_train"] = is_train
