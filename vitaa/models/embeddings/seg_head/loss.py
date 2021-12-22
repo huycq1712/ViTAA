@@ -147,25 +147,23 @@ class LossComputation(nn.Module):
         losses /= self.num_parts
         return losses
 
-    def forward(self, visual_embed, textual_embed,
-                part_embed, attribute_embed,
-                seg_feat, captions):
+    def forward(self, visual_embed, textual_embed, captions):
         labels = torch.stack([caption.get_field('id') for caption in captions]).long()
-        masks = [caption.get_field('crops') for caption in captions]
-        vmask = torch.stack([caption.get_field('mask') for caption in captions])
-        attributes = [caption.get_field('attribute') for caption in captions]
-        tmask = torch.stack([attribute.get_field('mask') for attribute in attributes])
+        #masks = [caption.get_field('crops') for caption in captions]
+        #vmask = torch.stack([caption.get_field('mask') for caption in captions])
+        #attributes = [caption.get_field('attribute') for caption in captions]
+        #tmask = torch.stack([attribute.get_field('mask') for attribute in attributes])
 
         global_align_loss = self.global_align_loss(visual_embed, textual_embed, labels)
-        local_align_loss = self.local_align_loss(part_embed, attribute_embed, labels, vmask, tmask)
+        #local_align_loss = self.local_align_loss(part_embed, attribute_embed, labels, vmask, tmask)
         instance_loss = self.instance_loss(visual_embed, textual_embed, labels)
-        mask_loss = self.mask_loss(seg_feat, masks)
+        #mask_loss = self.mask_loss(seg_feat, masks)
 
         losses = {
             "instance_loss": instance_loss,
-            "mask_loss": mask_loss,
+            #"mask_loss": mask_loss,
             "global_align_loss": global_align_loss,
-            "local_align_loss": local_align_loss
+            #"local_align_loss": local_align_loss
         }
         return losses
 

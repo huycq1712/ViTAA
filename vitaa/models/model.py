@@ -21,11 +21,11 @@ class ViTAA(nn.Module):
     def forward(self, images, captions, only_img=False):
         visual_feat = self.visual_model(images)
         textual_feat = self.textual_model(captions)
-        attributes = [caption.get_field('attribute') for caption in captions]
-        attribute_feat = self.textual_model(attributes)
+        #attributes = [caption.get_field('attribute') for caption in captions]
+        #attribute_feat = self.textual_model(attributes)
 
         outputs_embed, losses_embed = self.embed_model(
-            visual_feat, textual_feat, attribute_feat, captions)
+            visual_feat, textual_feat, captions)
 
         if self.training:
             losses = {}

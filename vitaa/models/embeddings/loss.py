@@ -9,10 +9,10 @@ from torch.nn.parameter import Parameter
 def euclidean_dist(x, y):
     """
     Args:
-      x: pytorch Variable, with shape [m, d]
-      y: pytorch Variable, with shape [n, d]
+        x: pytorch Variable, with shape [m, d]
+        y: pytorch Variable, with shape [n, d]
     Returns:
-      dist: pytorch Variable, with shape [m, n]
+        dist: pytorch Variable, with shape [m, n]
     """
     m, n = x.size(0), y.size(0)
     xx = torch.pow(x, 2).sum(1, keepdim=True).expand(m, n)

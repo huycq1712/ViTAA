@@ -12,10 +12,10 @@ from .collate_batch import collate_fn
 
 
 def build_dataset(dataset_list,
-                  transforms,
-                  crop_transforms,
-                  dataset_catalog,
-                  is_train=True):
+                transforms,
+                crop_transforms,
+                dataset_catalog,
+                is_train=True):
     if not isinstance(dataset_list, (list, tuple)):
         raise RuntimeError(
             "dataset_list should be a list of strings, got {}".format(dataset_list)
