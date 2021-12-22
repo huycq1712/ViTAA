@@ -25,7 +25,7 @@ def prepro_captions(json_ann):
             temp = []
             for item in s:
                 if item not in ['.', ',', '!', '?', '/']:
-                    temp.append(item.lower())
+                    temp.append(item.lower().replace(" ",""))
             anno['processed_tokens'][j] = temp
 
 
@@ -117,7 +117,7 @@ def main(args):
     splits = ['train', 'val', 'test']
     json_name = '%s.json'
     anno_file = 'annotations/vn3k.json'
-    att_dir = os.path.join(args.datadir, 'text_attribute_graph')
+    #att_dir = os.path.join(args.datadir, 'text_attribute_graph')
     json_ann = json.load(open(os.path.join(args.datadir, anno_file), encoding="utf-8"))
 
     # tokenization and preprocessing
@@ -155,10 +155,10 @@ def main(args):
                         ann['onehot'].append(wtoi[w])
 
                 # Load the parsed attribute and write to the processed files - Jacob
-                att_json_file = anno['file_path'].replace('/', '-')
-                with open(os.path.join(att_dir, att_json_file + '-' + str(cap_idx) + '.json'), 'r', encoding="utf-8") as f:
-                    att_dict = parse_att_json(ast.literal_eval(f.read()), wtoi)
-                ann['att_onehot'] = att_dict
+                #att_json_file = anno['file_path'].replace('/', '-')
+                #with open(os.path.join(att_dir, att_json_file + '-' + str(cap_idx) + '.json'), 'r', encoding="utf-8") as f:
+                #    att_dict = parse_att_json(ast.literal_eval(f.read()), wtoi)
+                #ann['att_onehot'] = att_dict
                 annotations.append(ann)
 
         categories = [k for k, v in id_collect.items()]

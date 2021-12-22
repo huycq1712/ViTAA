@@ -10,7 +10,7 @@ class Caption(object):
                     for line in text]
             if length is None:
                 length = torch.stack([torch.tensor(line.size(0), dtype=torch.int64, device=device)
-                                      for line in text])
+                                    for line in text])
             if max_length is None:
                 max_length = max([line.size(-1) for line in text])
         else:
