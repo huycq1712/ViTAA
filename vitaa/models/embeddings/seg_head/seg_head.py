@@ -98,7 +98,9 @@ class SegHead(nn.Module):
             part_feat_list.append(local)
             seg_feat_list.append(seg_local)
         seg_feat = torch.cat(seg_feat_list, dim=0)
-
+        seg_feat_save = torch.argmax(torch.stack(seg_feat_list, dim=1), dim = 2)
+        seg_feat_save = torch.sum(seg_feat_save, dim=1)
+        
         visual_embed = self.avgpool(visual_feat)
         visual_embed = visual_embed.view(batch_size, -1)
         visual_embed = self.visual_embed_layer(visual_embed)
@@ -130,6 +132,7 @@ class SegHead(nn.Module):
         attributes = [caption.get_field('attribute') for caption in captions]
         tmask = torch.stack([attribute.get_field('mask') for attribute in attributes])
         outputs.append(tmask)
+        outputs.append(seg_feat_save)
         return outputs, None
 
 
