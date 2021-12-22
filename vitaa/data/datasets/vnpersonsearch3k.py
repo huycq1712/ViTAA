@@ -25,7 +25,7 @@ class VNpersonsearch3k(data.Dataset):
         self.cap_transforms = cap_transforms
 
         self.img_dir = os.path.join(self.root, 'imgs')
-        self.seg_dir = os.path.join(self.root, 'segs')
+        #self.seg_dir = os.path.join(self.root, 'segs')
 
         print('loading annotations into memory...')
         self.dataset = json.load(open(ann_file, 'r', encoding="utf-8"))
