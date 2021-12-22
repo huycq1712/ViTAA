@@ -8,10 +8,10 @@ from .loss import make_loss_evaluator
 
 class SimpleHead(nn.Module):
     def __init__(self,
-                 cfg,
-                 visual_size,
-                 textual_size,
-                 ):
+                cfg,
+                visual_size,
+                textual_size,
+                ):
         super(SimpleHead, self).__init__()
         self.embed_size = cfg.MODEL.EMBEDDING.FEATURE_SIZE
 
